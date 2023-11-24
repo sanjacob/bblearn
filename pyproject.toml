@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bblearn"
+dynamic = ["version"]
+authors = [
+  { name="Jacob Sánchez", email="jacobszpz@protonmail.com" },
+]
+description = "An API client for Blackboard Learn"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Internet :: WWW/HTTP",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries"
+]
+dependencies = ["requests", "typing_extensions"]
+[tool.setuptools_scm]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-mock", "exceptiongroup", "mypy"]
+docs = ["sphinx", "sphinx-rtd-theme"]
+
+[project.urls]
+"Repository" = "https://github.com/sanjacob/bblearn"
+"Bug Tracker" = "https://github.com/sanjacob/bblearn/issues"
+
+[tool.isort]
+length_sort = true
+
+[tool.flake8]
+max-line-length = 88
+per-file-ignores = [
+    'filters.py:E731',
+]
