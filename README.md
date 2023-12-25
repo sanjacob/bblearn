@@ -7,9 +7,9 @@ Developed with [`tiny-api-client`][tiny-api-client]
 This library started as part of [Blackboard Sync][bbsync], but decided it could be extracted into its own distribution package.
 
 ```python
-from bblearn import BlackboardSession
+from blackboard import BlackboardSession
 
-session = BlackboardSession(cookies=...)
+session = BlackboardSession('http://blackboard.example.com/', cookies=...)
 session.fetch_version()
 ```
 
