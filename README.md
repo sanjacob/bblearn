@@ -9,7 +9,7 @@ This library started as part of [Blackboard Sync][bbsync], but decided it could 
 ```python
 from blackboard import BlackboardSession
 
-session = BlackboardSession('http://blackboard.example.com/', cookies=...)
+session = BlackboardSession('http://blackboard.example.com/learn/api/public/v{version}', cookies=...)
 session.fetch_version()
 ```
 
