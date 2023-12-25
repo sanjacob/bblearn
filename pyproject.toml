@@ -22,7 +22,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries"
 ]
-dependencies = ["requests", "typing_extensions"]
+dependencies = ["requests", "typing_extensions", "tiny-api-client", "pydantic", "pathvalidate"]
 [tool.setuptools_scm]
 
 [project.optional-dependencies]
