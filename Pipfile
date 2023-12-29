@@ -23,6 +23,7 @@ flake8 = "*"
 flake8-pyproject = "*"
 pre-commit = "*"
 twine = "*"
+pytest-tiny-api-client = "*"
 
 [requires]
 python_version = "3.10"
