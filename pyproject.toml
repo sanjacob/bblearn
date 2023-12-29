@@ -41,3 +41,6 @@ max-line-length = 88
 per-file-ignores = [
     'filters.py:E731',
 ]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]

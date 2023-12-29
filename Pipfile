@@ -25,6 +25,9 @@ pre-commit = "*"
 twine = "*"
 pytest-tiny-api-client = "*"
 autodoc-pydantic = "*"
+hypothesis = "*"
+black = "*"
+click = "*"
 
 [requires]
 python_version = "3.10"
