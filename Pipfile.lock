@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "459d4cd07b2fcf6e4cc52c0bdddd4ad151d9b3222ec14fae49375cb574dce7be"
+            "sha256": "10fe11c5f09cea7f4868caf3714e803ee21cebe207b677a6f43dce3cd9eb7f55"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1020,11 +1020,11 @@
         },
         "pytest-tiny-api-client": {
             "hashes": [
-                "sha256:15920043410d30540c3373141d9feecd9ee77195858318ce8dd42dfe7a7737ba",
-                "sha256:1ba875175351dde9f9dda58926ae90279aa092245d81412445f04f6f1d7fea71"
+                "sha256:103d953a362f1cc83266d3cd27fa8eaa2d9c6fd05cf5cd5ef4947255b19931a6",
+                "sha256:7aa6be80ef3e7fec113b9604538aec24276c64cdf4fff11f30315d91fd97a70d"
             ],
             "index": "pypi",
-            "version": "==1.0.0"
+            "version": "==1.0.1"
         },
         "python-dotenv": {
             "hashes": [
