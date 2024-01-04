@@ -32,13 +32,13 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run linter
-        run: flake8
+        run: flake8 blackboard
 
       - name: Run type checker
         run: mypy blackboard
 
-        #- name: Run test suite
-        #run: pytest -vvvv
+      - name: Run test suite
+        run: pytest -vvvv
 
   pypi:
     runs-on: ubuntu-latest

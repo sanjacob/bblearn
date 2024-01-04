@@ -105,10 +105,10 @@ class BBAvailable(str, Enum):
 class BBAvailability(ImmutableModel):
     available: BBAvailable | None = None
     allowGuests: bool = False
-    adaptiveRelease: dict = {}
+    adaptiveRelease: dict[str, str] = {}
     duration: BBDuration | None = None
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         return bool(self.available)
 
 
@@ -174,8 +174,8 @@ class BBContentHandler(ImmutableModel):
             return self.id == BBResourceType(other)
         return False
 
-    def __str__(self):
-        return self.id
+    def __str__(self) -> str:
+        return str(self.id)
 
 
 class BBCourseContent(ImmutableModel):
@@ -196,15 +196,15 @@ class BBCourseContent(ImmutableModel):
     hasGradebookColumns: bool = False
     hasAssociatedGroups: bool = False
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Title of the course content."""
-        return self.title
+        return self.title or 'Untitled'
 
     @property
     def title_path_safe(self) -> str:
         """Return a path safe version of the title."""
-        return sanitize_filename(self.title or 'Title missing',
-                                 replacement_text='_') or ''
+        return sanitize_filename(self.title or 'Untitled',
+                                 replacement_text='_') or 'Untitled'
 
 
 class BBContentChild(BBCourseContent):
@@ -216,8 +216,6 @@ class BBContentChild(BBCourseContent):
 
 class BBCourse(ImmutableModel):
     """BlackboardCourse. Represents an academic course."""
-
-    _parse_name = True
 
     id: str | None = None
     courseId: str | None = None

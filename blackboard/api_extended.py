@@ -20,6 +20,8 @@ an extension of the Blackboard REST API
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+from typing import Any
+
 from .blackboard import BBCourse
 from .api import BlackboardSession
 from .filters import BBMembershipFilter
@@ -33,7 +35,7 @@ class BlackboardExtended(BlackboardSession):
     """
 
     def ex_fetch_courses(self, *, result_filter: BBMembershipFilter | None = None,
-                         **kwargs) -> list[BBCourse]:
+                         **kwargs: Any) -> list[BBCourse]:
         """Fetch all the user's courses and their details"""
         courses = []
 
@@ -46,6 +48,8 @@ class BlackboardExtended(BlackboardSession):
             if ms.availability:
                 private = False
 
+                assert ms.courseId is not None
+
                 try:
                     course = self.fetch_courses(course_id=ms.courseId)
                 except ValueError as e:  # soon to change
@@ -53,6 +57,8 @@ class BlackboardExtended(BlackboardSession):
                     # log please
                     raise e
 
+                # mypy does not know result of calling API
+                assert isinstance(course, BBCourse)
                 course = course.model_copy(update={'created': ms.created})
 
                 if not private:

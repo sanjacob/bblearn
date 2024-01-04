@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d4e5815fb93e799c84a5f06da3457a42ab98471c6b4fa09b790a382a22da8de0"
+            "sha256": "459d4cd07b2fcf6e4cc52c0bdddd4ad151d9b3222ec14fae49375cb574dce7be"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -285,11 +285,11 @@
         },
         "tiny-api-client": {
             "hashes": [
-                "sha256:107dc9aad984b973456131a16ce529e8a83ba66d6ca7452124aeaec7a28e5847",
-                "sha256:880a1cba6dd1c83549b6de0e128e7cccec17cb1c5e3ffb97922591198204d346"
+                "sha256:3777ff8fcb95220e00b04e00d8278633f490eac32b7487d45b736823b7fd5e8c",
+                "sha256:c9ac4400edbab3d2335c2b7e17d51b9e3a5509c23c5ff49d09d643d93c854f88"
             ],
             "index": "pypi",
-            "version": "==1.1.0b1"
+            "version": "==1.2.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -327,11 +327,11 @@
         },
         "attrs": {
             "hashes": [
-                "sha256:1f28b4522cdc2fb4256ac1a020c78acf9cba2c6b461ccd2c126f3aa8e8335d04",
-                "sha256:6279836d581513a26f1bf235f9acd333bc9115683f14f7e8fae46c98fc50e015"
+                "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30",
+                "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==23.1.0"
+            "version": "==23.2.0"
         },
         "autodoc-pydantic": {
             "hashes": [
@@ -1004,11 +1004,11 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:0d009c083ea859a71b76adf7c1d502e4bc170b80a8ef002da5806527b9591fac",
-                "sha256:d989d136982de4e3b29dabcc838ad581c64e8ed52c11fbe86ddebd9da0818cd5"
+                "sha256:2cf0005922c6ace4a3e2ec8b4080eb0d9753fdc93107415332f50ce9e7994280",
+                "sha256:b090cdf5ed60bf4c45261be03239c2c1c22df034fbffe691abe93cd80cea01d8"
             ],
             "index": "pypi",
-            "version": "==7.4.3"
+            "version": "==7.4.4"
         },
         "pytest-mock": {
             "hashes": [
@@ -1226,11 +1226,11 @@
         },
         "tiny-api-client": {
             "hashes": [
-                "sha256:107dc9aad984b973456131a16ce529e8a83ba66d6ca7452124aeaec7a28e5847",
-                "sha256:880a1cba6dd1c83549b6de0e128e7cccec17cb1c5e3ffb97922591198204d346"
+                "sha256:3777ff8fcb95220e00b04e00d8278633f490eac32b7487d45b736823b7fd5e8c",
+                "sha256:c9ac4400edbab3d2335c2b7e17d51b9e3a5509c23c5ff49d09d643d93c854f88"
             ],
             "index": "pypi",
-            "version": "==1.1.0b1"
+            "version": "==1.2.0"
         },
         "tomli": {
             "hashes": [
@@ -1250,11 +1250,11 @@
         },
         "types-requests": {
             "hashes": [
-                "sha256:b32b9a86beffa876c0c3ac99a4cd3b8b51e973fb8e3bd4e0a6bb32c7efad80fc",
-                "sha256:dc5852a76f1eaf60eafa81a2e50aefa3d1f015c34cf0cba130930866b1b22a92"
+                "sha256:0f8c0c9764773384122813548d9eea92a5c4e1f33ed54556b508968ec5065cee",
+                "sha256:2e2230c7bc8dd63fa3153c1c0ae335f8a368447f0582fc332f17d54f88e69027"
             ],
             "index": "pypi",
-            "version": "==2.31.0.10"
+            "version": "==2.31.0.20231231"
         },
         "typing-extensions": {
             "hashes": [
