@@ -170,7 +170,8 @@ class BlackboardSession:
     # content file attachments #
 
     @get("/courses/{course_id}/contents/{content_id}/attachments/{attachment_id}")
-    def fetch_file_attachments(self, response: Any) -> list[BBAttachment] | BBAttachment:
+    def fetch_file_attachments(self, response: Any
+                               ) -> list[BBAttachment] | BBAttachment:
         """Get the file attachment meta data associated to the Content Item.
 
         or Get the file attachment meta data by an attachment ID.
