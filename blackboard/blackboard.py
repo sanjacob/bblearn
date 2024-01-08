@@ -165,6 +165,9 @@ class BBContentHandler(ImmutableModel):
     @field_validator('id', mode='before')
     @classmethod
     def trim_resource_type(cls, v: str) -> str:
+        if v is None:
+            return BBResourceType.Other
+
         return v.replace('resource/', '')
 
     def __eq__(self, other: object) -> bool:
@@ -172,6 +175,8 @@ class BBContentHandler(ImmutableModel):
             return self.id == other
         elif isinstance(other, str):
             return self.id == BBResourceType(other)
+        elif isinstance(other, BBContentHandler):
+            return super().__eq__(other)
         return False
 
     def __str__(self) -> str:
