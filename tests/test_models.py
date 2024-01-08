@@ -53,7 +53,7 @@ def test_bb_resourcetype():
 
 @given(st.from_type(BBResourceType))
 def test_bb_contenthandler_id(res_type):
-    assert BBContentHandler(id=f"resource/{res_type}").id == res_type
+    assert BBContentHandler(id=f"resource/{res_type.value}").id == res_type
 
 @given(st.from_type(BBResourceType))
 def test_bb_contenthandler_str(res_type):
