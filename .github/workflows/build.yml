@@ -35,7 +35,7 @@ jobs:
         run: flake8 blackboard
 
       - name: Run type checker
-        run: mypy blackboard
+        run: mypy --strict blackboard
 
       - name: Run test suite
         run: pytest -vvvv
