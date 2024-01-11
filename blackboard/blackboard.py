@@ -16,7 +16,8 @@ Blackboard Model Classes
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301, USA.
 
 from enum import Enum
 from typing import Any
@@ -113,7 +114,7 @@ class BBAvailability(ImmutableModel):
 
 
 class BBMembership(ImmutableModel):
-    """Blackboard Membership. Represents relation between student and course."""
+    """Relation between student and course."""
 
     id: str | None = None
     userId: str | None = None

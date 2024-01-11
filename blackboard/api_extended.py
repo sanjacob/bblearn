@@ -18,7 +18,8 @@ an extension of the Blackboard REST API
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301, USA.
 
 from typing import Any
 
@@ -28,13 +29,13 @@ from .filters import BBMembershipFilter
 
 
 class BlackboardExtended(BlackboardSession):
-    """An extension of `BlackboardSession` which adds unofficial features
-    on top of it for convenience and ease of use.
+    """An extension of `BlackboardSession` with QOL improvements.
     These extensions may be combining two or more steps into one when
     fetching data from the API, or filtering results.
     """
 
-    def ex_fetch_courses(self, *, result_filter: BBMembershipFilter | None = None,
+    def ex_fetch_courses(self, *,
+                         result_filter: BBMembershipFilter | None = None,
                          **kwargs: Any) -> list[BBCourse]:
         """Fetch all the user's courses and their details"""
         courses = []
@@ -42,7 +43,7 @@ class BlackboardExtended(BlackboardSession):
         memberships = self.fetch_user_memberships(**kwargs)
 
         if result_filter is not None:
-            memberships = result_filter.filter(memberships)
+            memberships = list(result_filter.filter(memberships))
 
         for ms in memberships:
             if ms.availability:

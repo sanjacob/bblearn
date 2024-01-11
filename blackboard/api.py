@@ -18,7 +18,8 @@ an interface to make Blackboard REST API calls on a session basis
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301, USA.
 
 import logging
 import requests
@@ -43,7 +44,7 @@ class BlackboardSession:
     def __init__(self, url: str, *, cookies: RequestsCookieJar):
         """
         :param url: The URL of the blackboard API to use
-        :param cookies: A `RequestsCookieJar` authorized to browse the API
+        :param cookies: A `RequestsCookieJar` authorised to use the API
         """
         self._url = url
         self._cookies = cookies
@@ -60,7 +61,8 @@ class BlackboardSession:
     # WEBDAV DOWNLOAD
 
     @get("{webdav_url}", stream=True, json=False, use_api=False)
-    def download_webdav(self, response: requests.Response) -> requests.Response:
+    def download_webdav(self, response: requests.Response
+                        ) -> requests.Response:
         """Downloads an arbitrary webdav file"""
         return response
 
@@ -97,7 +99,7 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/meetings/users/{user_id}")
     def fetch_attendance_records_by_user_id(self, response: Any) -> Any:
-        """Return a list of Course Meeting Attendance for a given user id
+        """Return a list of Course Meeting Attendance for a given user
         regardless of courses and meetings.
 
         :param course_id: The course or organization ID.
@@ -139,8 +141,8 @@ class BlackboardSession:
     def fetch_calendar_items(self, response: Any) -> Any:
         """Get a course calendar item.
 
-        :param calendar_item_type: One of (Course, GradebookColumn, Institution,
-            OfficeHours, Personal).
+        :param calendar_item_type: One of (Course, GradebookColumn,
+            Institution, OfficeHours, Personal).
         :param calendar_item_id:
         """
         return response
@@ -158,9 +160,11 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/contents/{content_id}/children")
     def fetch_content_children(self, response: Any) -> list[BBContentChild]:
-        """List all child content items directly beneath another content item.
+        """List all child content items directly beneath another
+        content item.
 
-        This is only valid for content items that are allowed to have children.
+        This is only valid for content items that are allowed to
+        have children.
 
         :param course_id: The course or organization ID.
         :param content_id: The Content ID.
@@ -169,10 +173,12 @@ class BlackboardSession:
 
     # content file attachments #
 
-    @get("/courses/{course_id}/contents/{content_id}/attachments/{attachment_id}")
+    @get("/courses/{course_id}/contents/"
+         "{content_id}/attachments/{attachment_id}")
     def fetch_file_attachments(self, response: Any
                                ) -> list[BBAttachment] | BBAttachment:
-        """Get the file attachment meta data associated to the Content Item.
+        """Get the file attachment meta data associated to the
+        Content Item.
 
         or Get the file attachment meta data by an attachment ID.
 
@@ -201,7 +207,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/contents/{content_id}/groups/{group_id}")
     def fetch_content_groups(self, response: Any) -> Any:
-        """Return a list of content group associations for the specified content.
+        """Return a list of content group associations for the
+        specified content.
 
         :param course_id: The course or organization ID.
         :param content_id: The Content ID.
@@ -225,7 +232,8 @@ class BlackboardSession:
     @get("/courses/{course_id}/resources/{resource_id}/children")
     def fetch_course_resource_children(self, response: Any) -> Any:
         """
-        Return a list of Course Resources that are children of the specified Resource.
+        Return a list of Course Resources that are children of the
+        specified Resource.
 
         :param course_id: The course or organization ID.
         :param resource_id: The xythos resource ID.
@@ -234,12 +242,13 @@ class BlackboardSession:
 
     # content review #
 
-    @get("/courses/{course_id}/contents/{content_id}/users/{user_id}/reviewStatus")
+    @get("/courses/{course_id}/contents/"
+         "{content_id}/users/{user_id}/reviewStatus")
     def fetch_review_status(self, response: Any) -> Any:
         """Obtain the review status for a content item.
 
-        This endpoint will only fetch the reviewStatus if the corresponding content
-        was previously marked as reviewable.
+        This endpoint will only fetch the reviewStatus if the
+        corresponding content was previously marked as reviewable.
 
         :param course_id: The course or organization ID.
         :param content_id: The Content ID.
@@ -251,7 +260,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/announcements/{announcement_id}")
     def fetch_course_announcements(self, response: Any) -> Any:
-        """Return a list of Course Announcements or Get a Course Announcement.
+        """Return a list of Course Announcements or Get a
+        Course Announcement.
 
         :param course_id: The course or organization ID.
         :param announcement_id:
@@ -260,7 +270,8 @@ class BlackboardSession:
 
     # course assessments #
 
-    @get("/courses/{course_id}/assessments/{assessment_id}/questions/{question_id}")
+    @get("/courses/{course_id}/assessments/"
+         "{assessment_id}/questions/{question_id}")
     def fetch_questions(self, response: Any) -> Any:
         """Get the list of questions for an Ultra Assessment
         or Get a question by Id from it.
@@ -275,7 +286,8 @@ class BlackboardSession:
 
     @get("/catalog/categories/{category_type}/{category_id}")
     def fetch_category(self, response: Any) -> Any:
-        """Return a list of categories of the provided type (course or organization).
+        """Return a list of categories of the provided type
+        (course or organization).
         / Return the category corresponding the provided type
         (course or organization) and ID.
 
@@ -284,7 +296,8 @@ class BlackboardSession:
         """
         return response
 
-    @get("/catalog/categories/{category_type}/{category_id}/courses/{course_id}")
+    @get("/catalog/categories/{category_type}/"
+         "{category_id}/courses/{course_id}")
     def fetch_memberships(self, response: Any) -> Any:
         """
         Get courses associated with the provided category.
@@ -296,9 +309,9 @@ class BlackboardSession:
 
     @get("/catalog/categories/{category_type}/{parent_id}/children")
     def fetch_child_categories(self, response: Any) -> Any:
-        """Return a list of categories which are children of the category...
-
-        corresponding to the provided type (course or organization) and Id
+        """Return a list of categories which are children of the
+        category corresponding to the provided type (course or
+        organization) and Id
 
         :param category_type: One of (Course, Organization).
         :param parent_id:
@@ -321,8 +334,8 @@ class BlackboardSession:
         """Get the list of file metadata for a Submission
         associated to the course and attempt.
 
-        Get the file metadata for a Student Submission associated to the course
-        and attempt.
+        Get the file metadata for a Student Submission associated to
+        the course and attempt.
 
         :param course_id: The course or organization ID.
         :param attempt_id:
@@ -345,7 +358,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/gradebook/gradeNotations/{grade_notation_id}")
     def fetch_grade_notations(self, response: Any) -> Any:
-        """Return a list of grade notations. / Return a specific grade notation.
+        """Return a list of grade notations. /
+        Return a specific grade notation.
 
         :param course_id: The course or organization ID.
         :grade_notation_id:
@@ -369,9 +383,9 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/gradebook/schemas/{schema_id}")
     def fetch_grade_schemas(self, response: Any) -> Any:
-        """Return a list of grade schemas associated with the specified course.
-
-        / Load the grade schema associated with the specified course and schema Id.
+        """Return a list of grade schemas associated with the specified
+        course. / Load the grade schema associated with the specified
+        course and schema Id.
 
         :param course_id: The course or organization ID.
         :param schema_id: The grade schema ID.
@@ -380,19 +394,20 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/gradebook/columns/{column_id}", version=2)
     def fetch_grade_columns(self, response: Any) -> Any:
-        """Return a list of grade columns. / Load a specific grade column.
+        """Return a list of grade columns. /
+        Load a specific grade column.
 
         :param course_id: The course or organization ID.
         :param column_id: The grade column ID.
         """
         return response
 
-    @get("/courses/{course_id}/gradebook/columns/{column_id}/attempts/{attempt_id}",
-         version=2)
+    @get("/courses/{course_id}/gradebook/columns/"
+         "{column_id}/attempts/{attempt_id}", version=2)
     def fetch_column_attempts(self, response: Any) -> Any:
-        """Return a list of attempts associated with the specified grade column.
-
-        / Load the grade column attempt for the specified id.
+        """Return a list of attempts associated with the specified
+        grade column / Load the grade column attempt for the specified
+        id.
 
         :param course_id: The course or organization ID.
         :param column_id: The grade column ID.
@@ -403,7 +418,8 @@ class BlackboardSession:
     @get("/courses/{course_id}/gradebook/columns/{column_id}/users/{user_id}",
          version=2)
     def fetch_column_grades(self, response: Any) -> Any:
-        """Return a list of grades associated with the specified grade column.
+        """Return a list of grades associated with the specified
+        grade column.
 
         / Load the grade column grade for a specific user.
 
@@ -413,8 +429,8 @@ class BlackboardSession:
         """
         return response
 
-    @get("/courses/{course_id}/gradebook/columns/{column_id}/users/lastChanged",
-         version=2)
+    @get("/courses/{course_id}/gradebook/columns/"
+         "{column_id}/users/lastChanged", version=2)
     def fetch_column_grade_last_changed(self, response: Any) -> Any:
         """Load the grade column grade with the maximum change index.
 
@@ -436,7 +452,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/gradebook/periods/{period_id}")
     def fetch_grading_periods(self, response: Any) -> Any:
-        """Return a list of grading periods. / Return a specific grading period.
+        """Return a list of grading periods. /
+        Return a specific grading period.
 
         :param course_id: The course or organization ID.
         :param period_id:
@@ -447,7 +464,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/groups/{group_id}/users/{user_id}", version=2)
     def fetch_group_memberships(self, response: Any) -> Any:
-        """Return a list of group memberships objects for the specified group.
+        """Return a list of group memberships objects for the
+        specified group.
 
         / Loads a group membership in the specified group.
 
@@ -461,7 +479,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/groups/{group_id}", version=2)
     def fetch_groups(self, response: Any) -> Any:
-        """Return a list of all top-level groups in the specified course.
+        """Return a list of all top-level groups in the specified
+        course.
 
         / Load a group in the specified course.
 
@@ -472,7 +491,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/groups/sets/{group_id}", version=2)
     def fetch_group_sets(self, response: Any) -> Any:
-        """Return a list of all groupsets / Load a groupset in the specified course.
+        """Return a list of all groupsets / Load a groupset in the
+        specified course.
 
         :param course_id: The course or organization ID.
         :param group_id: The group ID.
@@ -492,7 +512,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/users/{user_id}")
     def fetch_course_memberships(self, response: Any) -> Any:
-        """Return a list of user memberships for the specified course or organization.
+        """Return a list of user memberships for the specified
+        course or organization.
 
         / Load a user membership in the specified course.
 
@@ -503,7 +524,8 @@ class BlackboardSession:
 
     @get("/users/{user_id}/courses")
     def fetch_user_memberships(self, response: Any) -> list[BBMembership]:
-        """Return a list of course and organization memberships for the specified user.
+        """Return a list of course and organization memberships for
+        the specified user.
 
         :param user_id: The user ID.
         """
@@ -526,9 +548,10 @@ class BlackboardSession:
     def fetch_cross_list_set(self, response: Any) -> Any:
         """Return the course cross-listing set for the specified course.
 
-        This will return any and all parent/child associations regardless of
-        the specified course being a parent or child course.
-        The result will be empty if the specified course is not cross-listed.
+        This will return any and all parent/child associations
+        regardless of the specified course being a parent or child
+        course. The result will be empty if the specified course is not
+        cross-listed.
 
         :param course_id: The course or organization ID.
         """
@@ -572,7 +595,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/nodes")
     def fetch_associated_nodes(self, response: Any) -> Any:
-        """Obtain a list of nodes to which a given course is directly associated.
+        """Obtain a list of nodes to which a given course is directly
+        associated.
 
         :param course_id: The course or organization ID.
         """
@@ -581,8 +605,8 @@ class BlackboardSession:
     @get("/institutionalHierarchy/nodes/{node_id}")
     def fetch_nodes(self, response: Any) -> Any:
         """Return the Top-level institutional hierarchy nodes.
-
-        / Return the institutional hierarchy node corresponding the provided ID.
+        / Return the institutional hierarchy node corresponding
+        the provided ID.
 
         :param node_id: The node ID.
         """
@@ -590,7 +614,8 @@ class BlackboardSession:
 
     @get("/institutionalHierarchy/nodes/{node_id}/children")
     def fetch_node_children(self, response: Any) -> Any:
-        """Return the children of the institutional hierarchy node corresponding...
+        """Return the children of the institutional hierarchy node
+        corresponding...
 
         to the provided ID.
 
@@ -600,7 +625,8 @@ class BlackboardSession:
 
     @get("/institutionalHierarchy/nodes/{node_id}/courses")
     def fetch_node_course_associations(self, response: Any) -> Any:
-        """Return a list of node-course relationships for the specified node.
+        """Return a list of node-course relationships for the specified
+        node.
 
         :param node_id: The node ID.
         """
@@ -621,8 +647,8 @@ class BlackboardSession:
     @get("/lti/domains/{domain_id}")
     def fetch_domain_config(self, response: Any) -> Any:
         """Return the list of LTI domain configs.
-
-        / This endpoint returns the LTI domain config with the specified Id.
+        / This endpoint returns the LTI domain config with the
+        specified Id.
 
         :param domain_id:
         """
@@ -632,7 +658,8 @@ class BlackboardSession:
 
     @get("/courses/{course_id}/performance/contentReviewStatus")
     def fetch_performance_review_status(self, response: Any) -> Any:
-        """List the content review statuses for all the users enrolled in a course.
+        """List the content review statuses for all the users enrolled
+        in a course.
 
         :param course_id: The course or organization ID.
         """
@@ -662,7 +689,8 @@ class BlackboardSession:
 
     @get("/institutionRoles/{role_id}")
     def fetch_institution_roles(self, response: Any) -> Any:
-        """Return a list of institution roles. / Load a specific institution role.
+        """Return a list of institution roles. /
+        Load a specific institution role.
 
         :param role_id: The institution role ID.
         """
@@ -670,7 +698,8 @@ class BlackboardSession:
 
     @get("/systemRoles/{role_id}")
     def fetch_system_roles(self, response: Any) -> Any:
-        """Return a list of system roles. / Get a specific system role by roleId.
+        """Return a list of system roles. /
+        Get a specific system role by roleId.
 
         :param role_id: The System Role ID.
         """
@@ -697,7 +726,8 @@ class BlackboardSession:
 
     @get("/system/policies/privacy")
     def fetch_policies(self, response: Any) -> Any:
-        """Return the links to the Blackboard and Institution privacy policies."""
+        """Return the links to the Blackboard and
+        Institution privacy policies."""
         return response
 
     @get("/system/tasks/{task_id}")
@@ -743,8 +773,8 @@ class BlackboardSession:
     def fetch_avatar(self, response: Any) -> Any:
         """Get a user avatar image.
 
-        The response: Any is an HTTP redirect rather than image raw data.
-        It is up to the caller of the api to follow the redirect
+        The response: Any is an HTTP redirect rather than image raw
+        data. It is up to the caller of the api to follow the redirect
         and download the image.
 
         Not yet implemented.

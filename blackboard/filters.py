@@ -16,28 +16,35 @@ Client-side result filters for the Blackboard API
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301, USA.
 
-import fnmatch
+from fnmatch import fnmatch
 from dataclasses import dataclass
-from collections.abc import Sequence
-from typing import Any, Optional, Callable, TypeVar, Generic
+from typing import TypeVar, Generic
+from collections.abc import Sequence, Iterable, Callable
 
 from .blackboard import BBMembership, BBAttachment
 
+T = TypeVar('T')
+SearchT = TypeVar('SearchT')
 
-def _filter(f, items, search, *,
-            blacklist: Sequence | None = None,
-            whitelist: Sequence | None = None):
+
+def _filter(f: Callable[[T], SearchT | None],
+            items: Sequence[T],
+            search: Callable[[SearchT | None, Sequence[SearchT]], bool], *,
+            blacklist: Sequence[SearchT] | None = None,
+            whitelist: Sequence[SearchT] | None = None) -> Iterable[T]:
     """
     Filter a list of items by a whitelist or blacklist
+    Whitelist takes priority
 
     :param items: The sequence containing the items to filter
-    :param f: A function that processes the item in the sequence before filtering
-              This can be useful for filtering by attribute
+    :param f: A function that processes the item in the sequence
+              before filtering (e.g. filtering by attribute)
     :param search: A search function
-    :param blacklist: Items from this list will be removed from the sequence
-    :param whitelist: Only items in this list will be allowed in the sequence
+    :param blacklist: Items that will be filtered out
+    :param whitelist: Only these items will be allowed
     """
     filter_f = None
     if f is None:
@@ -51,56 +58,57 @@ def _filter(f, items, search, *,
     return filter(filter_f, items)
 
 
-T = TypeVar('T')
-
-
 @dataclass
 class BWFilter(Generic[T]):
     """Represents a blacklist/whitelist filter.
 
     If a whitelist exists it will take precedence.
     """
-    blacklist: Optional[list[T]] = None
-    whitelist: Optional[list[T]] = None
+    blacklist: list[str] | None = None
+    whitelist: list[str] | None = None
 
-    def filter(self, f: Callable[[Any], T], items: Sequence[Any]):
+    def filter(self, f: Callable[[T], str | None],
+               items: Sequence[T]) -> Iterable[T]:
         """
         Filters a list of items with either a blacklist or whitelist.
 
-        :param f: A function that can process the items on the list before comparing
-                  to the filters. This is specially useful when filtering by a member
-                  rather than the object itself
+        :param f: A function that can process the items on the list
+                  before comparing to the filters
         :param items: A list of items to use the filter onn
         """
         return _filter(f, items, lambda x, seq: x in seq,
                        blacklist=self.blacklist, whitelist=self.whitelist)
 
-    def filter_wc(self, f: Callable[[Any], T], items: Sequence[Any]):
+    def filter_wc(self, f: Callable[[T], str | None],
+                  items: Sequence[T]) -> Iterable[T]:
         """
         The same as filter except items are matched with wildcards.
 
         :see `filter`:
         """
-        return _filter(f, items, lambda x, seq: any(fnmatch.fnmatch(s, x) for s in seq),
-                       blacklist=self.blacklist, whitelist=self.whitelist)
+        return _filter(
+            f, items,
+            lambda x, seq: x is None or any(fnmatch(s, x) for s in seq),
+            blacklist=self.blacklist, whitelist=self.whitelist
+        )
 
 
 @dataclass
 class BBAttachmentFilter:
-    """Groups different kinds of filters that the user may apply to attachments"""
-    mime_types: BWFilter
+    """Filters that the user may apply to attachments"""
+    mime_types: BWFilter[BBAttachment]
 
-    def filter(self, items: Sequence[BBAttachment]):
+    def filter(self, items: Sequence[BBAttachment]) -> Iterable[BBAttachment]:
         return self.mime_types.filter_wc(lambda x: x.mimeType, items)
 
 
 @dataclass
 class BBMembershipFilter:
-    """Groups different kinds of filters that the user may apply to content"""
-    data_sources: BWFilter
-    min_year: Optional[int] = None
+    """Filters that the user may apply to content"""
+    data_sources: BWFilter[BBMembership]
+    min_year: int | None = None
 
-    def filter(self, items: Sequence[BBMembership]):
+    def filter(self, items: Sequence[BBMembership]) -> Iterable[BBMembership]:
         if self.min_year is not None:
             # Allow items without a creation date to go through
             items = [m for m in items if
