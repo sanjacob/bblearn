@@ -88,7 +88,7 @@ class BWFilter(Generic[T]):
         """
         return _filter(
             f, items,
-            lambda x, seq: x is None or any(fnmatch(s, x) for s in seq),
+            lambda x, seq: (x is not None) and any(fnmatch(s, x) for s in seq),
             blacklist=self.blacklist, whitelist=self.whitelist
         )
 
