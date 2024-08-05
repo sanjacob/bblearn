@@ -22,8 +22,7 @@ from unittest import mock
 from hypothesis import given, strategies as st
 
 from blackboard.api import BlackboardSession
-from blackboard.blackboard import (BBCourse, BBCourseContent,
-                                   BBContentChild, BBAttachment)
+from blackboard.blackboard import (BBCourse, BBCourseContent, BBAttachment)
 
 
 API_URL = "http://blackboard.example.org/api/v{version}"
@@ -55,14 +54,14 @@ def test_fetch_contents(bbcoursecontent):
         ) == bbcoursecontent
 
 
-@given(bbcontentchild=st.lists(st.from_type(BBContentChild)))
-def test_fetch_content_children(bbcontentchild):
+@given(bbcoursecontent=st.lists(st.from_type(BBCourseContent)))
+def test_fetch_content_children(bbcoursecontent):
     with mock.patch('pytest_tiny_api_client._api_call') as api_call:
-        api_call.return_value = [x.model_dump() for x in bbcontentchild]
+        api_call.return_value = [x.model_dump() for x in bbcoursecontent]
         s = BlackboardSession(API_URL, cookies=None)
         assert s.fetch_content_children(
             course_id='...', content_id='...'
-        ) == bbcontentchild
+        ) == bbcoursecontent
 
 
 @given(bbattachment=st.from_type(BBAttachment))

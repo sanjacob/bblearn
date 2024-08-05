@@ -194,6 +194,7 @@ class BBCourseContent(ImmutableModel):
     modified: datetime | None = None
     position: int = 0
     hasChildren: bool = False
+    parentId: str | None = None
     launchInNewWindow: bool = False
     reviewable: bool = False
     availability: BBAvailability | None = None
@@ -211,13 +212,6 @@ class BBCourseContent(ImmutableModel):
         """Return a path safe version of the title."""
         return sanitize_filename(self.title or 'Untitled',
                                  replacement_text='_') or 'Untitled'
-
-
-class BBContentChild(BBCourseContent):
-    """Blackboard Content Child."""
-
-    body: str | None = None
-    parentId: str | None = None
 
 
 class BBCourse(ImmutableModel):

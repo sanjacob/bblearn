@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2024-08-05
+
+### Removed
+- `BBContentChild` class made redundant
+
+## [0.2.4] - 2024-01-20
+
+### Changed
+- `filter_wc` will allow None only in blacklist mode
+
 ## [0.2.3] - 2024-01-11
 
 ### Changed

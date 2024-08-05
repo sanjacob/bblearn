@@ -28,9 +28,12 @@ from requests.cookies import RequestsCookieJar
 
 from tiny_api_client import api_client, get
 
-from .blackboard import (BBMembership, BBCourse, BBCourseContent,
-                         BBContentChild, BBAttachment)
-
+from .blackboard import (
+    BBMembership,
+    BBCourse,
+    BBCourseContent,
+    BBAttachment
+)
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
@@ -159,7 +162,7 @@ class BlackboardSession:
         return [BBCourseContent(**content) for content in response]
 
     @get("/courses/{course_id}/contents/{content_id}/children")
-    def fetch_content_children(self, response: Any) -> list[BBContentChild]:
+    def fetch_content_children(self, response: Any) -> list[BBCourseContent]:
         """List all child content items directly beneath another
         content item.
 
@@ -169,7 +172,7 @@ class BlackboardSession:
         :param course_id: The course or organization ID.
         :param content_id: The Content ID.
         """
-        return [BBContentChild(**child) for child in response]
+        return [BBCourseContent(**child) for child in response]
 
     # content file attachments #
 
