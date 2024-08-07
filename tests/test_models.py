@@ -16,7 +16,8 @@ Test the Pydantic Blackboard Model Classes
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301, USA.
 
 import pytest
 from hypothesis import given, strategies as st
@@ -97,28 +98,32 @@ def test_bb_contenthandler_eq_resourcetype(res_type):
 
 @given(st.text(min_size=1))
 def test_bb_coursecontent_str(title):
-    b = BBCourseContent(title=title)
+    b = BBCourseContent(id="content", title=title)
     assert str(b) == title
 
 
 def test_bb_coursecontent_str_untitled():
-    b = BBCourseContent(title='')
+    b = BBCourseContent(id="content", title='')
     assert str(b) == 'Untitled'
 
 
-def test_bb_coursecontent_title_path():
-    assert (BBCourseContent(title="unsafe<path.txt").title_path_safe ==
-            "unsafe_path.txt")
-    assert (BBCourseContent(title="unsafe\\path.txt").title_path_safe ==
-            "unsafe_path.txt")
-    assert (BBCourseContent(title="../../unsafe<path.txt").title_path_safe ==
-            ".._.._unsafe_path.txt")
+@pytest.mark.parametrize("title,expected", [
+    ("unsafe<path.txt", "unsafe_path.txt"),
+    ("unsafe\\path.txt", "unsafe_path.txt"),
+    ("../../unsafe<path.txt", ".._.._unsafe_path.txt")
+])
+def test_bb_coursecontent_title_path(title: str, expected: str):
+    content = BBCourseContent(id="content", title=title)
+    assert content.title_path_safe == expected
 
 
 def test_bb_course_code():
-    assert BBCourse(name="CO2345 : Information Security ").code == "CO2345"
+    course = BBCourse(id="CO2345",
+                      name="CO2345 : Information Security ")
+    assert course.code == "CO2345"
 
 
 def test_bb_course_title():
-    assert (BBCourse(name="CO2345 : Information Security, 2023 ").title ==
-            "Information Security")
+    course = BBCourse(id="CO2345",
+                      name="CO2345 : Information Security, 2023 ")
+    assert (course.title == "Information Security")

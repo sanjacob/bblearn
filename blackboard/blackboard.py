@@ -73,7 +73,7 @@ class BBFile(ImmutableModel):
 class BBAttachment(ImmutableModel):
     """Blackboard File Attachment."""
 
-    id: str | None = None
+    id: str
     fileName: str | None = None
     mimeType: str | None = None
 
@@ -118,7 +118,7 @@ class BBMembership(ImmutableModel):
 
     id: str | None = None
     userId: str | None = None
-    courseId: str | None = None
+    courseId: str
     dataSourceId: str | None = None
     created: datetime | None = None
     modified: datetime | None = None
@@ -187,7 +187,7 @@ class BBContentHandler(ImmutableModel):
 class BBCourseContent(ImmutableModel):
     """Blackboard Content."""
 
-    id: str | None = None
+    id: str
     title: str | None = None
     body: str | None = None
     created: datetime | None = None
@@ -217,7 +217,7 @@ class BBCourseContent(ImmutableModel):
 class BBCourse(ImmutableModel):
     """BlackboardCourse. Represents an academic course."""
 
-    id: str | None = None
+    id: str
     courseId: str | None = None
     name: str | None = None
     description: str | None = None

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2024-08-07
+
+### Changed
+- Make id mandatory in `BBCourse`, `BBCourseContent`, `BBAttachment`
+- Make courseId mandatory in `BBMembership`
+
 ## [0.2.5] - 2024-08-05
 
 ### Removed
