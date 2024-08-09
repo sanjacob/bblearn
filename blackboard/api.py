@@ -51,15 +51,14 @@ class BlackboardSession:
         """
         self._url = url
         self._cookies = cookies
-        self._username: str
+        self._user_id: str = None
 
     @property
-    def username(self) -> str:
-        """Username field used for API requests."""
-        if self._username is None:
-            username = self.fetch_users(user_id='me')['userName']
-            self._username = f'userName:{username}'
-        return self._username
+    def user_id(self) -> str:
+        """User id field used for API requests."""
+        if self._user_id is None:
+            self._user_id = self.fetch_users(user_id='me')['id']
+        return self._user_id
 
     # WEBDAV DOWNLOAD
 
