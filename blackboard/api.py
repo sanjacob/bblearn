@@ -49,6 +49,8 @@ class BlackboardSession:
         :param url: The URL of the blackboard API to use
         :param cookies: A `RequestsCookieJar` authorised to use the API
         """
+
+        self._instance_url = url
         self._url = url.rstrip("/") + "/learn/api/public/v{version}"
         self._cookies = cookies
         self._user_id: str | None = None
@@ -813,3 +815,8 @@ class BlackboardSession:
     def url(self) -> str:
         """API URL."""
         return self._url
+
+    @property
+    def instance_url(self) -> str:
+        """Base URL of instance as provided."""
+        return self._instance_url
