@@ -49,7 +49,7 @@ class BlackboardSession:
         :param url: The URL of the blackboard API to use
         :param cookies: A `RequestsCookieJar` authorised to use the API
         """
-        self._url = url
+        self._url = url.rstrip("/") + "/learn/api/public/v{version}"
         self._cookies = cookies
         self._user_id: str | None = None
 
