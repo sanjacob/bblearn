@@ -5,7 +5,8 @@ Blackboard Learn API Client
    :maxdepth: 2
    :caption: Contents:
 
-   pages/api_reference
+   pages/api
+   pages/blackboard
 
 
 Indices and tables

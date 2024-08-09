@@ -1,5 +1,5 @@
-API Reference
-=============
+Model Reference
+===============
 
 .. automodule:: blackboard.blackboard
    :members:
