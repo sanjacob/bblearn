@@ -51,7 +51,7 @@ class BlackboardSession:
         """
         self._url = url
         self._cookies = cookies
-        self._user_id: str = None
+        self._user_id: str | None = None
 
     @property
     def user_id(self) -> str:
