@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA  02110-1301, USA.
 
-from typing import NoReturn
+from typing import Any, NoReturn
 from tiny_api_client import APIStatusError
 
 
@@ -33,7 +33,7 @@ class BBForbiddenError(Exception):
     pass
 
 
-def status_handler(status_code) -> NoReturn:
+def status_handler(status_code: Any) -> NoReturn:
     match status_code:
         case 400:
             raise BBBadRequestError()
