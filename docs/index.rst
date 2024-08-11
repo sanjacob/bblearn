@@ -7,6 +7,7 @@ Blackboard Learn API Client
 
    pages/api
    pages/blackboard
+   pages/exceptions
 
 
 Indices and tables

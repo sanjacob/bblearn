@@ -33,7 +33,7 @@ class BBForbiddenError(Exception):
     pass
 
 
-def status_handler(status_code: Any) -> NoReturn:
+def status_handler(status_code: Any, response: Any) -> NoReturn:
     match status_code:
         case 400:
             raise BBBadRequestError()
