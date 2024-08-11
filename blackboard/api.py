@@ -1,7 +1,7 @@
 """
-Blackboard API.
+Blackboard API
 
-an interface to make Blackboard REST API calls on a session basis
+an interface to make Blackboard REST API calls on a session basis.
 """
 
 # Copyright (C) 2023, Jacob Sánchez Pérez
@@ -35,12 +35,12 @@ from .blackboard import (
     BBAttachment
 )
 
+from .exceptions import status_handler
+
 _logger = logging.getLogger(__name__)
-_logger.setLevel(logging.DEBUG)
-_logger.addHandler(logging.NullHandler())
 
 
-@api_client(timeout=12)
+@api_client(timeout=12, status_handler=status_handler)
 class BlackboardSession:
     """Represents a user session in Blackboard."""
 
