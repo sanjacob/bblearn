@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2024-08-11
+
+### Added
+- Custom API exceptions when server returns error code
+
 ## [0.2.9] - 2024-08-09
 
 ### Added
