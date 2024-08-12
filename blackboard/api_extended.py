@@ -21,11 +21,15 @@ an extension of the Blackboard REST API
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA  02110-1301, USA.
 
+import logging
 from typing import Any
 
 from .blackboard import BBCourse
 from .api import BlackboardSession
 from .filters import BBMembershipFilter
+from .exceptions import BBForbiddenError
+
+logger = logging.getLogger(__name__)
 
 
 class BlackboardExtended(BlackboardSession):
@@ -47,22 +51,15 @@ class BlackboardExtended(BlackboardSession):
 
         for ms in memberships:
             if ms.availability:
-                private = False
-
-                assert ms.courseId is not None
-
                 try:
                     course = self.fetch_courses(course_id=ms.courseId)
-                except ValueError as e:  # soon to change
-                    private = str(e) == 'Private course'
-                    # log please
-                    raise e
-
-                # mypy does not know result of calling API
-                assert isinstance(course, BBCourse)
-                course = course.model_copy(update={'created': ms.created})
-
-                if not private:
+                except BBForbiddenError:
+                    logger.warning(f"Course {ms.courseId} is not available")
+                    pass
+                else:
+                    # mypy does not know result of calling API
+                    assert isinstance(course, BBCourse)
+                    course = course.model_copy(update={'created': ms.created})
                     courses.append(course)
 
         return courses

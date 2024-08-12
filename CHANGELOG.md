@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2024-08-12
+
+### Changed
+- Extended method `ex_fetch_courses` now detects a 403 response
+- The package-wide logger is now public
+
+### Added
+- Logging was added to the extended api module
+
 ## [0.3.0] - 2024-08-11
 
 ### Added
