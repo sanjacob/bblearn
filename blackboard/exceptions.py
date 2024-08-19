@@ -36,10 +36,10 @@ class BBForbiddenError(Exception):
 def status_handler(client: Any, status_code: Any, response: Any) -> NoReturn:
     match status_code:
         case 400:
-            raise BBBadRequestError()
+            raise BBBadRequestError(response)
         case 401:
-            raise BBUnauthorizedError()
+            raise BBUnauthorizedError(response)
         case 403:
-            raise BBForbiddenError()
+            raise BBForbiddenError(response)
         case _:
             raise APIStatusError(status_code)
