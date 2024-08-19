@@ -1,6 +1,6 @@
 """Blackboard REST API exceptions."""
 
-# Copyright (C) 2023, Jacob Sánchez Pérez
+# Copyright (C) 2024, Jacob Sánchez Pérez
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,18 +18,21 @@
 # MA  02110-1301, USA.
 
 from typing import Any, NoReturn
-from tiny_api_client import APIStatusError
 
 
-class BBBadRequestError(Exception):
+class BBStatusError(Exception):
     pass
 
 
-class BBUnauthorizedError(Exception):
+class BBBadRequestError(BBStatusError):
     pass
 
 
-class BBForbiddenError(Exception):
+class BBUnauthorizedError(BBStatusError):
+    pass
+
+
+class BBForbiddenError(BBStatusError):
     pass
 
 
@@ -42,4 +45,4 @@ def status_handler(client: Any, status_code: Any, response: Any) -> NoReturn:
         case 403:
             raise BBForbiddenError(response)
         case _:
-            raise APIStatusError(status_code)
+            raise BBStatusError(response)
