@@ -33,6 +33,7 @@ class BBForbiddenError(Exception):
     pass
 
 
+@staticmethod
 def status_handler(status_code: Any, response: Any) -> NoReturn:
     match status_code:
         case 400:
