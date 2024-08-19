@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.2] - 2024-08-19
 
 ### Fixed
-- Error status handler now correctly marked as `staticmethod`
+- Error status handler now has correct signature
 
 ## [0.3.1] - 2024-08-12
 
