@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.5] - 2024-10-09
+
+### Changed
+- Move BWFilter into a separate library
+
 ## [0.3.4] - 2024-08-19
 
 ### Added
