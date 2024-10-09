@@ -43,10 +43,5 @@ docs = ["sphinx", "sphinx-rtd-theme"]
 [tool.isort]
 length_sort = true
 
-[tool.flake8]
-per-file-ignores = [
-    'filters.py:E731',
-]
-
 [tool.mypy]
 plugins = ["pydantic.mypy", "tiny_api_client.mypy"]
