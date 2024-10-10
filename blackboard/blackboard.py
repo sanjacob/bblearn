@@ -174,6 +174,9 @@ class BBContentHandler(ImmutableModel):
     def __eq__(self, other: object) -> bool:
         if isinstance(other, BBResourceType):
             return self.id == other
+        elif isinstance(other, Enum):
+            # prevents conflicts with other namespaces
+            return False
         elif isinstance(other, str):
             return self.id == BBResourceType(other)
         elif isinstance(other, BBContentHandler):

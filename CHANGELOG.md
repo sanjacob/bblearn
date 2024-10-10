@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.6] - 2024-10-10
+
+### Fixed
+- Prevent conflicts with other content type enums
+
 ## [0.3.5] - 2024-10-09
 
 ### Changed
