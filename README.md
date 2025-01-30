@@ -21,6 +21,10 @@ pip install bblearn
 ```
 
 
+## Documentation
+
+You can find the documentation at https://bblearn.readthedocs.io
+
 
 ## License
 
