@@ -702,12 +702,12 @@
         },
         "hypothesis": {
             "hashes": [
-                "sha256:45a31fe2b936688b2954f375c7f87e9dfefa4f2cddfa31cdeba15d77600e1286",
-                "sha256:e9fd66c25b8f0aa6395ce6728360892c3af22529cc16cae7512a4672776d4781"
+                "sha256:cda4a57115d10ecbefe0a9cc8d69d20a13eb56ecbfe7c24eaee5d368c2b7c477",
+                "sha256:d0672eb0ac1060b0324b0e43925a50b2bef1c60a32739bb9233000d85838436a"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==6.129.4"
+            "version": "==6.130.4"
         },
         "id": {
             "hashes": [
